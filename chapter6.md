@@ -1,1 +1,0 @@
-# chapter6: lens charecteristics

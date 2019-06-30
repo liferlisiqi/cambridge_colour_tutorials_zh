@@ -1,1 +1,0 @@
-# chapter8: caring for your camera & photos

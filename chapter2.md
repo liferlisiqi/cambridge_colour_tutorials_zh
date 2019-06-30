@@ -1,1 +1,0 @@
-# chapter 2：qualities of digital photos

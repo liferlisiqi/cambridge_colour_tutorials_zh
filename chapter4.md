@@ -1,1 +1,0 @@
-# chapter4: camera types & accessories
