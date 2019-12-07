@@ -8,10 +8,10 @@
 
   * [Chapter1:how your camera works](chapter1.md)
   * [digital camera sensors](section1.1.md)	
-  * [understanding camera exposure: aperture, ISO, shutter speed](section1.2.md)
-  * [understanding camera metering](section1.3.md)
-  * [understanding depth of field](section1.4.md)
-  * [understanding camera lens: focal length & aperture](section1.5.md)
+  * [camera exposure](section1.2.md)
+  * [camera metering & exposure](section1.3.md)
+  * [depth of field](section1.4.md)
+  * [understanding camera lens](section1.5.md)
   * [understanding white balance](section1.6.md)
   * [understanding camera autofocus](section1.7.md)
     
@@ -53,13 +53,12 @@
   * [understanding & using polarizing filters](section7.2.md)
   * [using graduated neutral density(GND) filters](section7.3.md)
   * [using neutral density(ND) filters](section7.4.md)
-   
+  
   * [Chapter8:caring for your camera & photos](chapter8.md)
   * [digital camera sensor cleaning](section8.1.md)
   * [how to make archival digital photo backups](section8.2.md)
   * [how to protect online photos](section8.3.md)
   
-
 * [Part3:photo editing & post-processing](part3.md)
   * [Chapter9:image files](chapter9.md)
   * [understanding bit depth](section9.1.md)
@@ -101,7 +100,6 @@
   * [converging a color photo into black & white](section15.3.md)
   * [how to create animated 3D stereo photos](section15.4.md)
   
-
 * [Part4:color management & printing](part4.md)
   * [Chapter16:concepts](chapter16.md)
   * [a background on color perception](section16.1.md)
@@ -118,7 +116,6 @@
   * [soft proofing: matching on-screen photos with prints](section18.2.md)
   * [working space comparison: sRGB vs Adobe RGB](section18.3.md)
   
-
 * [Part5:photography techniques & styles](part5.md)
   * [Chapter19:camera usage](chapter19.md)
   * [using camera shutter speed creatively](section19.1.md)
