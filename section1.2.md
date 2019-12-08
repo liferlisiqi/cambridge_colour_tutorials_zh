@@ -16,7 +16,7 @@
 
 
 
-![exposure_triangle](/jpg/1.1_exposure_triangle.png)
+![exposure triangle](https://liferlisiqi.github.io/cambridge_colour_tutorials_zh/jpg/1.1_exposure_triangle.png)
 
 三个设置都不同程度的控制曝光: **光圈**:这个也没啥好解释的，就是一个光圈 **快门速度**：控制曝光时间的 **ISO**：控制相机sensor对给定亮度光照的灵敏度的
 
@@ -41,7 +41,7 @@
 
 **How it appears** 快门是抓拍或加强运动效果的有利工具：
 
-![shutter_speed](/jpg/1.2_shutter_speed.png)
+![shutter speed](https://liferlisiqi.github.io/cambridge_colour_tutorials_zh/jpg/1.2_shutter_speed.png)
 
 对于瀑布或其他创意性镜头，运动模糊都是想要的效果，但是对于大多数镜头来说是需要避免的。因此大部分人关心的是快门速度的设置拍出清晰的照片，无论是运动抓拍还是手持防抖。
 
@@ -51,7 +51,7 @@
 
 对相机光圈的设置可以控制光线通过镜头的区域，它是根据f-stop值变化的，有些违反直觉的是，光圈的开口面积是随着f-stop的减小而增加。在摄像俚语中，“stopping down”或“opening up”是指增加或者减少f-stop的值。
 
-![aperture](/jpg/1.2_aperture.png)
+![aperture](https://liferlisiqi.github.io/cambridge_colour_tutorials_zh/jpg/1.2_aperture.png)
 
 **By the numbers** 每当f-stop值减半时，采光区域面积就会翻倍，大多数摄影师只记住了每次加倍/减半对应的f-stop数字：
 
@@ -73,13 +73,13 @@
 
 **How it appears** 相机的光圈设置决定了照片的景深，较低的f-stop值对应较浅的景深：
 
-![aperture_depth_of_field](/jpg/1.2_aperture_depth_of_field.png)
+![aperture_depth_of_field](https://liferlisiqi.github.io/cambridge_colour_tutorials_zh/jpg/1.2_aperture_depth_of_field.png)
 
 ## ISO speed
 
 ISO感光度决定了相机对入射光的敏感程度，与快门类似，它与曝光程度也是线性关系。但是与光圈和快门速度不同，由于较高的ISO会显著增加图像的噪声，所以很多时候使用较低的ISO是比较理想的。因此，当光圈和快iso门速度的设定不能满足要求时，才会考虑增加ISO。
 
-![iso](/jpg/1.2_iso.png)
+![iso](https://liferlisiqi.github.io/cambridge_colour_tutorials_zh/jpg/1.2_iso.png)
 
 常见的ISO值包括：100、200、400、800，也有许多相机允许更低或更高的值。对于紧凑型相机，ISO在50-200范围能拍出噪点较少的照片；对于数码单反相机，可以接收50-800范围的ISO。
 

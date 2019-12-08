@@ -1,52 +1,70 @@
-# Digital camera sensors
+# Depth of field
 
-[原文连接](https://www.cambridgeincolour.com/tutorials/camera-sensors.htm)  
+[原文连接](https://www.cambridgeincolour.com/tutorials/depth-of-field.htm)  
 
-数码相机使用数百万个微小光腔或“感光点”阵列来记录图像，当按下快门的瞬间开始曝光，每个感光点都会收集光子并转换成电信号。曝光一旦结束，相机就会关闭这些感光点，然后通过测量电信号的强度来评估进入的光子数量。这些信号会被量化成数字值，其精度由bit位深度来决定。最终出图精度可能会根据保存格式做进一步压缩，比如JPEG格式图像是8bit（0-255）精度.
+景深是指锐度可接受的距离范围，取决于相机型号、光圈和焦距，print size 和 viewing distance也对影响我们对精神的感知。本文旨在为摄影提供更好的指导和技术理解，并提供景深计算器，来显示它随相机设置的变化。
 
-![Cavity Array](/jpg/1.1_cavity_array.png)
+![dept_of_field](https://liferlisiqi.github.io/cambridge_colour_tutorials_zh/jpg/1.4_dept_of_field.png)
 
-然而按照上面描述，我们只能得到灰度图，因为这些敢感光点不能区分各种颜色。为了捕获到彩色图像，需要在每个光腔上放置一个滤光片，只允许特定颜色的光通过。实际上现代数码相机的每个光腔只能接收三原色中的一种，剩下的2/3入射光都会被丢弃。为了让每个像素点有全部颜色，需要近似出其他两种三颜色，最常见的方法就是使用如下图所示的滤光片阵列，Bayer阵列。
+景深不会出现从锐利到不锐利的急剧变化，而是逐渐过渡。实际上，即使我们的眼睛或相机分辨率还未察觉，聚焦距离前方或后方内容的清晰度已经开始下降。
 
-![bayer Array](/jpg/1.1_bayer_array.png)
+## Circle of confusion
 
-Bayer阵列包含交替分布的红绿和绿蓝滤光片，这里需要注意的是绿色滤光片的数量是红色和蓝色滤光片的两倍。这是由于人眼对绿色比蓝色和红色更为敏感，所以三原色感光面积并不是等分的。相比于平等对待每种颜色，绿色像素的冗余设计可以使图片具有更少的噪声和更好的细节，这也可以解释为什么绿色通道的噪声远少于其他两种颜色。
+![circle_of_confusion](https://liferlisiqi.github.io/cambridge_colour_tutorials_zh/jpg/1.4_circle_of_confusion.png)
 
-![origin & bayer](/jpg/1.1_bayer&origin.png)
+由于没有严格的过渡点，因此使用“模糊圈”来定义一个点被看作不清晰时的模糊程度。当我们的眼睛感觉到模糊圈时，这个区域就不在景深范围了，这时锐度便不可接受。为清楚起见，上面的模糊圈作用被夸大了，实际只是相机传感器区域的一小部分。
 
-## Bayer demosaicing
+![circle_of_confusion2](https://liferlisiqi.github.io/cambridge_colour_tutorials_zh/jpg/1.4_circle_of_confusion2.png)
 
-去马赛克（demosaicing）是将Bayer图转换成每个像素都包含三原色的图像的过程，如果相机不能直接测量全部色彩，那么这个过程是如何实现的呢？如果我们将每四个2x2的光腔阵列想象成一个单独的全颜色光腔，就可以解决这个问题。
+什么时候模糊圈会被我们的眼睛所察觉呢？一个可接受锐度的模糊圈被宽泛地定义为，当放大到标准的8×10英寸印刷时会被忽视，从大约1英尺的标准距离可以察觉到。
 
-![demosaic](/jpg/1.1_demosaic.png)
+景深仅设置为模糊圈的最大值，而不是描述失焦区域的情况，这些区域也被叫做散景（bokeh，来自日语）。具有相同景深的两幅图像可能有不同的散景，这取决于镜头的形状。实际上模糊圈通常不是圆形，当它非常小时会近似圆形，而比较大时会呈现具有5-8个边的多边形。
 
-虽然这个方法可以达到目的，但大多数相机都会采取额外的操作来从这个颜色阵列中获取更多的信息。如果只在每个2x2阵列的原本位置利用这些颜色信息，那么我们只能得到水平/垂直上一半分辨率的图像。如果利用多个相互重叠的2x2阵列来进行插值计算，就能实现更高的分辨率，如下图所示。
+## Controlling depth of field
 
-![demosaic2](/jpg/1.1_demosaic2.png)
+虽然打印尺寸和观看距离会影响眼睛的模糊圈大小，但是光圈和焦距是决定相机模糊圈大小的关键因素，大光圈（小F-stop）和近焦距会产生较浅的景深，下面测试焦距相同，光圈不同：
 
-去马赛克的算法有很多，在这里介绍的算法在计算过程中不会考虑使用图像边缘的信息。如果我们假设图像在每个方向上是连续的，那么边缘附近的计算就不准确。而对于数百万像素的相机，这些边缘附近的像素经常会被剪切掉，所以损失通常可以忽略不记。
+![aperture_diff](https://liferlisiqi.github.io/cambridge_colour_tutorials_zh/jpg/1.4_aperture_diff.png)
 
-## Demosaicing artifacts
+## Clarification: focal length and depth field
 
-当图像中具有接近分辨率极限的小尺寸细节纹理时，传感器有时会骗过去马赛克算法，产生不符实际的结果，也叫做artifact。最常见的一种摩尔纹，表现形式为重复图案、颜色失真或者迷宫格。
+与普遍看法相反，焦距并不影响景深。虽然长焦镜头看似会产生更浅的景深，主要是因为长焦通常用于放大无法接近的拍摄对象。如果对于长焦和广角镜头而言，拍摄物体占据相同比例的图像尺寸，同焦距的景深几乎是恒定的。这也要求你要么更近距离使用广角，要么更远距离使用长焦，如下表所述：
 
-![demosaic_artifact](/jpg/1.1_demosaic_artifact.png)
+![focal_length_chart](https://liferlisiqi.github.io/cambridge_colour_tutorials_zh/jpg/1.4_focal_length_chart.png)
 
-上面展示了两个不同放大倍数的照片，可以看到下面四个图都出现了摩尔纹，而且在第三个图中还出现了迷宫格和彩噪，这些artifacts的出现取决于纹理类型和处理RAW图的方法。
+请注意最小焦距确实有微妙的变化。这是一个真实的效果，但与光圈和聚焦距离相比可以忽略不计。即使总景深实际上是恒定的，焦距之前和之后的景深的分数也会随着焦距而变化，如下所示：
 
-然而即使是理论上完美的传感器，可以捕获并区分感光点的所有颜色，摩尔纹和其他artifacts仍然会出现，这是所有以离散间隔或位置对连续信号进行采样的系统不可避免的后果。所以几乎所有数字传感器都包含称为光学低通滤波器（OLPF）或扛混叠滤波器（AA）的东西，通常是放在传感器上面的薄层，它通过对超过传感器分辨率的问题细节进行有效模糊来缓解artifacts。
+![focal_length_chart2](https://liferlisiqi.github.io/cambridge_colour_tutorials_zh/jpg/1.4_focal_length_chart2.png)
 
-## Microlens arrays
+这暴露了传统DoF概念的局限性：它只考虑了总的DoF而不是它在焦平面周围的分布，尽管两者都可能有助于锐度的感知。广角镜头如何在焦平面后面提供渐渐弱化的DoF，这对于传统的风景照片来说非常重要。
 
-你可能疑惑本文中第一幅图的感光点为什么没有紧紧放置在彼此旁边，实际上相机传感器上的感光点并没有覆盖整个表面，为了容纳其他电子设备，可能仅仅占据总面积的一半。如下图所示，感光点之间会有“小尖峰”来将光子引导到其中一个感光点。数码相机在每个感光点上方都包含微透镜（microlens）以增强聚光能力，这些透镜类似于漏斗，将本可能会被浪费的光子引导到感光点。
+较长的焦距也可能看起来具有较浅的景深，因为相对于前景放大了背景（由于其较窄的视角）。这使得失焦的背景看起来更加失焦，因为模糊程度加重。但这是另一个概念，因为景深仅描述照片的锐利区域，而不是模糊区域。
 
-![microlens](/jpg/1.1_microlens.png)
+另一方面，当站在相同位置并聚焦在相同距离的物体上时，较长焦距的镜头将具有较浅的景深（即使图像将完全不同地构图对象）。这更能接近日常使用，由于更高的放大倍数，而不是焦距。
 
-精心设计的微透镜可以增强每个感光点的光信号，进而可以在相同曝光时间内生成具有更少噪声的图像。相机厂商已经能够通过改善微透镜的设计来减少最高分辨率下的噪声，尽管同样面积的sensor被塞进越来越多越来越小的感光点。
+单反相机的景深也比紧凑型数码相机更浅，因为单反相机需要更长的焦距才能实现相同的视野。
 
-## reference
-[digital camera sensors](https://www.cambridgeincolour.com/tutorials/camera-sensors.htm)  
-[wikipedia:Demosaicing](https://en.wikipedia.org/wiki/Demosaicing)  
-[rawpedia:Demosaicing](https://rawpedia.rawtherapee.com/Demosaicing)   
+## Calculating depth of field
 
+为了计算景深，需要首先确定最大允许模糊圈值。这取决于相机类型（传感器或胶片尺寸）以及观看距离/打印尺寸组合。提前知道做什么通常并不简单，可以尝试使用景深计算器工具来帮助计算。
+
+## Depth of focus & aperture visualization
+
+模糊圈的另一个含义是焦深的概念（也称为“焦点传播”）。它与景深不同，因为它描述了光在相机传感器上聚焦的距离，而不是拍摄物体：
+
+![dept_of_focus](https://liferlisiqi.github.io/cambridge_colour_tutorials_zh/jpg/1.4_dept_of_focus.png)
+
+关键概念是：当物体聚焦时，来自该点的光线会聚在相机传感器上的某个点上。如果光线在稍微不同的位置（到达光盘而不是光点）汇聚传感器，则此对象将被渲染为失焦，而且程度会随光线距离增加。
+
+## Others notes
+
+为什么不使用最小光圈（数值最大）来实现最佳景深呢？除了曝光时间长和没有三脚架之外，太小的光圈会因为衍射效应产生更大的模糊圈，而使图像变得更柔和，即使在焦平面内也是如此。随着光圈变小，衍射很快成为景深的限制因素，
+
+对于微距摄影（高倍率），景深还受到瞳孔放大倍数的影响。对于内部对称的镜片值为1（什么值？？？），对于广角和长焦其值会更大。对于小于1的瞳孔放大率，实现了更大的景深（比通常计算的更大），而当瞳孔放大率等于1时，瞳孔放大率不改变计算。问题在于镜头制造商通常不提供瞳孔放大率，并且人们只能在视觉上粗略估计它。
+
+## Reference
+
+[Understanding image sharpness part 6: Depth of field and diffraction](http://www.normankoren.com/Tutorials/MTF6.html)
+[compares the depth of field for several focal lengths](https://luminous-landscape.com/dof2/) [confusion circle](https://en.wikipedia.org/wiki/Circle_of_confusion)
+[Depth of Field and Depth of Focus](https://www.edmundoptics.com/resources/application-notes/imaging/depth-of-field-and-depth-of-focus/)
 

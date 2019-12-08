@@ -8,11 +8,11 @@
 
 所有相机的光度计都有一个根本上的缺陷：它们只能测量反射光。这也就意味着相机能做到最好的程度就是推测出有多少光线照射到物体上。
 
-![reflected_light](/jpg/1.3_reflected_light.png)
+![reflected_light](https://liferlisiqi.github.io/cambridge_colour_tutorials_zh/jpg/1.3_reflected_light.png)
 
 如果所有物体都能反射全部的入射光，那么相机就能完美的工作，但是真是世界中绝大多数物体的反射率变化很大。出于这个原因，相机内测光系统会以中度灰物体的反射光亮度为标准进行测光。如果相机对着比中度灰更亮或更暗的物体，那相机测光就会错误的计算欠曝或过曝。而手持式测光表对于同样入射光下的所有物体，都会计算出同样的曝光值。
 
-![18gray](/jpg/1.3_18gray.png)
+![18%_gray](https://liferlisiqi.github.io/cambridge_colour_tutorials_zh/jpg/1.3_18gray.png)
 
 
 
@@ -24,11 +24,11 @@
 
 为了准确地曝光更大范围的光照和反射组合，大多数相机都有多种测光选项。每个选项的工作原理是为不同的亮度区域分配不同的权重，权重越高的地方越可靠，对最终曝光的贡献也就越多。
 
-![metering](/jpg/1.3_metering.png)
+![metering](https://liferlisiqi.github.io/cambridge_colour_tutorials_zh/jpg/1.3_metering.png)
 
 白色的区域是对曝光计算贡献较大的区域，而黑色区域区域通常会被忽略（不太懂）。根据所使用的曝光项和对焦点，上述的测光图也可以偏离中心。
 
-![meter_autofocus](/jpg/1.3_meter_autofocus.png)
+![meter_autofocus](https://liferlisiqi.github.io/cambridge_colour_tutorials_zh/jpg/1.3_meter_autofocus.png)
 
 更复杂的测光算法不仅仅局限于区域映射，还包括：evaluative, zone 和 matrix metering（这里不会了），当相机设置为自动曝光时这些通常是默认设置。这些算法计算时通常将图像根据位置、光强和颜色分为多个子部分，自动对焦点的位置和相机方向也会有助于计算。
 
@@ -40,11 +40,11 @@
 
 点测光的使用频率很低，因为测光区域很小所以针对性很强，当不确定拍摄物体反射率而使用灰卡来测光时会很有用。
 
-![spot_metering](/jpg/1.3_spot_metering.png)
+![spot_metering](https://liferlisiqi.github.io/cambridge_colour_tutorials_zh/jpg/1.3_spot_metering.png)
 
 对于创意曝光以及环境光线不常见时，点测光和局部测光也非常有用。 在下面左侧和右侧的示例中，可以从漫射的前景瓦片测光，或者从井口下方照亮的石头上测光：
 
-![creative_exposure](/jpg/1.3_creative_exposure.png)
+![creative_exposure](https://liferlisiqi.github.io/cambridge_colour_tutorials_zh/jpg/1.3_creative_exposure.png)
 
 ## Notes on center-weighted metering
 
