@@ -19,7 +19,7 @@
   * [understanding bit depth](section2.1.md)
   * [understanding sharpness](section2.2.md)
   * [understanding image noise](section2.3.md)
-  * [understanding dynamic range](section2.4.md)
+  * [dynamic range in digital photography](section2.4.md)
     
   * [Chapter3:advanced concepts](chapter3.md)
   * [digital camera sensor sizes: how do these influence photography?](section3.1.md)
