@@ -12,7 +12,7 @@
   * [camera metering & exposure](section1.3.md)
   * [depth of field](section1.4.md)
   * [understanding camera lens](section1.5.md)
-  * [understanding white balance](section1.6.md)
+  * [tutorials: white balance](section1.6.md)
   * [understanding camera autofocus](section1.7.md)
     
   * [Chapter2:qualities of digital photos](chapter2.md)
