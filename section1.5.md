@@ -1,32 +1,40 @@
+
+
 # Understanding camera lenses
 
 [原文连接](https://www.cambridgeincolour.com/tutorials/camera-lenses.htm)  
 
-数码相机使用数百万个微小光腔或“感光点”阵列来记录图像，当按下快门的瞬间开始曝光，每个感光点都会收集光子并转换成电信号。曝光一旦结束，相机就会关闭这些感光点，然后通过测量电信号的强度来评估进入的光子数量。这些信号会被量化成数字值，其精度由bit位深度来决定。最终出图精度可能会根据保存格式做进一步压缩，比如JPEG格式图像是8bit（0-255）精度.
+了解相机镜头有助于为数码摄影增加更多创意， 为拍摄任务选择合适的镜头需要在成本、尺寸、重量、镜头速度和图像质量之间做权衡。 本教程通过对图像质量、焦距、透视、定焦镜头与变焦镜头以及光圈或f值的概念进行介绍性概述，以增进对摄影的理解。
 
 ## LENS ELEMENTS & IMAGE QUALITY
+
+除了最简单的相机以外，所有相机镜头都由多个“镜头元件”组成的。 每个元件都会引导光线路径，以便在数字传感器上尽可能准确地重建图像。 在尽可能减少像差的基础上，使用最少和最便宜的元件。
 
 
 
 ![lens elements diagram](https://cdn.cambridgeincolour.com/images/tutorials/lensflare_elements9.png)
 
-然而按照上面描述，我们只能得到灰度图，因为这些敢感光点不能区分各种颜色。为了捕获到彩色图像，需要在每个光腔上放置一个滤光片，只允许特定颜色的光通过。实际上现代数码相机的每个光腔只能接收三原色中的一种，剩下的2/3入射光都会被丢弃。为了让每个像素点有全部颜色，需要近似出其他两种三颜色，最常见的方法就是使用如下图所示的滤光片阵列，Bayer阵列。
+当图像中的点在通过镜头转换后未汇聚到一点时会产生光学像差，从而导致图像模糊、对比度降低或颜色失准（色差）。 镜头也可能会受到不均匀，径向降低的图像亮度（渐晕）或变形的困扰。 将鼠标移到下面的每个选项上，以查看在极端情况下它们如何影响图像质量：
 
-![bayer Array](/jpg/1.1_bayer_array.png)
+![dept_of_focus](https://liferlisiqi.github.io/cambridge_colour_tutorials_zh/jpg/1.5_optical_aberrations.png)
+
+任何镜头在某种程度上都存在上述问题， 在本教程的其余部分中，当一个镜头的光学质量比另一个镜头低时，就会表现为上述伪像的某种组合。 取决于拍摄主题，某些镜头产生的伪像可能不如其他镜头那么令人反感。
 
 ## INFLUENCE OF LENS FOCAL LENGTH
 
+镜头的焦距决定了它的视角，也决定了在固定摄影位置上被摄对象被放大多少， 广角镜头的焦距短，远摄镜头的焦距长。
 
+<div align="center">
+<img src="https://cdn.cambridgeincolour.com/images/tutorials/lenses_focal-length-right1.png" height="200px" alt="Low Noise(Smooth Colorless Gray)"><img src="https://cdn.cambridgeincolour.com/images/tutorials/lenses_focal-length-left1.png" height="200px" alt="High Noise(Patches of Color)">
+</div>
 
-
+许多人说焦距决定图像的视角，但严格来说，视角仅随人相对于被摄物体的位置而变化。 如果人们试图同时使用广角镜和远摄镜头将同一被摄对象充满整个画面，那么视角的确会改变，因为要被迫靠近或远离其被摄对象。 对于这种情况，广角镜会放大或拉伸透视perspective，而远摄镜会压缩或展平透视perspective。
 
 ![img](https://cdn.cambridgeincolour.com/images/tutorials/lenses_telephoto.jpg)
 
+透视控制是摄影中强大的构图工具，并且通常可以决定焦距的选择（当人们可以从任何位置摄影时）。 将鼠标移到上方的图像上，以查看广角镜头造成的放大透视图。 请注意，镜框内的被摄对象是如何保持几乎相同的，所以广角镜需要更靠近位置。 物体的相对大小会发生变化，从而使远处的门口相对于附近的灯变得更小。
 
-
-Bayer阵列包含交替分布的红绿和绿蓝滤光片，这里需要注意的是绿色滤光片的数量是红色和蓝色滤光片的两倍。这是由于人眼对绿色比蓝色和红色更为敏感，所以三原色感光面积并不是等分的。相比于平等对待每种颜色，绿色像素的冗余设计可以使图片具有更少的噪声和更好的细节，这也可以解释为什么绿色通道的噪声远少于其他两种颜色。
-
-
+下表说明了什么焦距会被认为是广角或长焦镜头，并说明了典型用途。 请注意，所列焦距仅为粗略范围，实际用途可能会有很大差异。 例如，许多人在远处使用长焦镜头来压缩视角。
 
 | Lens Focal Length* |    Terminology     |   Typical Photography   |
 | :----------------: | :----------------: | :---------------------: |
@@ -35,6 +43,8 @@ Bayer阵列包含交替分布的红绿和绿蓝滤光片，这里需要注意的
 |      35-70 mm      |       Normal       |  Street & Documentary   |
 |     70-135 mm      |  Medium Telephoto  |       Portraiture       |
 |    135-300+ mm     |     Telephoto      | Sports, Bird & Wildlife |
+
+其他因素也可能受到镜头焦距的影响。 远摄镜头更容易受到相机震动的影响，因为较小的手部动作会被放大，类似于试图透过双筒望远镜观察时的晃动感。 广角镜头通常更耐眩光，部分原因是设计人员认为太阳更可能在镜框内。 最后要考虑的是，中等和远摄镜头通常在相似的价格范围内可产生更好的光学质量。
 
 ## FOCAL LENGTH & HANDHELD PHOTOS
 
