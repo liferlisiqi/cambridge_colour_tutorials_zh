@@ -8,7 +8,7 @@
 
 
 
-![Cavity Array](/jpg/1.1_cavity_array.png)
+![lens elements diagram](https://cdn.cambridgeincolour.com/images/tutorials/lensflare_elements9.png)
 
 然而按照上面描述，我们只能得到灰度图，因为这些敢感光点不能区分各种颜色。为了捕获到彩色图像，需要在每个光腔上放置一个滤光片，只允许特定颜色的光通过。实际上现代数码相机的每个光腔只能接收三原色中的一种，剩下的2/3入射光都会被丢弃。为了让每个像素点有全部颜色，需要近似出其他两种三颜色，最常见的方法就是使用如下图所示的滤光片阵列，Bayer阵列。
 
@@ -16,19 +16,35 @@
 
 ## INFLUENCE OF LENS FOCAL LENGTH
 
+
+
+
+
+![img](https://cdn.cambridgeincolour.com/images/tutorials/lenses_telephoto.jpg)
+
+
+
 Bayer阵列包含交替分布的红绿和绿蓝滤光片，这里需要注意的是绿色滤光片的数量是红色和蓝色滤光片的两倍。这是由于人眼对绿色比蓝色和红色更为敏感，所以三原色感光面积并不是等分的。相比于平等对待每种颜色，绿色像素的冗余设计可以使图片具有更少的噪声和更好的细节，这也可以解释为什么绿色通道的噪声远少于其他两种颜色。
 
-![origin & bayer](/jpg/1.1_bayer&origin.png)
+
+
+| Lens Focal Length* |    Terminology     |   Typical Photography   |
+| :----------------: | :----------------: | :---------------------: |
+|  Less than 21 mm   | Extreme Wide Angle |      Architecture       |
+|      21-35 mm      |     Wide Angle     |        Landscape        |
+|      35-70 mm      |       Normal       |  Street & Documentary   |
+|     70-135 mm      |  Medium Telephoto  |       Portraiture       |
+|    135-300+ mm     |     Telephoto      | Sports, Bird & Wildlife |
 
 ## FOCAL LENGTH & HANDHELD PHOTOS
 
 去马赛克（demosaicing）是将Bayer图转换成每个像素都包含三原色的图像的过程，如果相机不能直接测量全部色彩，那么这个过程是如何实现的呢？如果我们将每四个2x2的光腔阵列想象成一个单独的全颜色光腔，就可以解决这个问题。
 
-![demosaic](/jpg/1.1_demosaic.png)
+![shaky hands - rotational vibrations](https://cdn.cambridgeincolour.com/images/tutorials/lenses_rotational.png)
 
 虽然这个方法可以达到目的，但大多数相机都会采取额外的操作来从这个颜色阵列中获取更多的信息。如果只在每个2x2阵列的原本位置利用这些颜色信息，那么我们只能得到水平/垂直上一半分辨率的图像。如果利用多个相互重叠的2x2阵列来进行插值计算，就能实现更高的分辨率，如下图所示。
 
-![demosaic2](/jpg/1.1_demosaic2.png)
+![shaky hands - vertical vibrations](https://cdn.cambridgeincolour.com/images/tutorials/lenses_vertical.png)
 
 去马赛克的算法有很多，在这里介绍的算法在计算过程中不会考虑使用图像边缘的信息。如果我们假设图像在每个方向上是连续的，那么边缘附近的计算就不准确。而对于数百万像素的相机，这些边缘附近的像素经常会被剪切掉，所以损失通常可以忽略不记。
 
@@ -36,7 +52,7 @@ Bayer阵列包含交替分布的红绿和绿蓝滤光片，这里需要注意的
 
 当图像中具有接近分辨率极限的小尺寸细节纹理时，传感器有时会骗过去马赛克算法，产生不符实际的结果，也叫做artifact。最常见的一种摩尔纹，表现形式为重复图案、颜色失真或者迷宫格。
 
-![demosaic_artifact](/jpg/1.1_demosaic_artifact.png)
+![img](https://cdn.cambridgeincolour.com/images/tutorials/lenses_dog1.jpg)
 
 上面展示了两个不同放大倍数的照片，可以看到下面四个图都出现了摩尔纹，而且在第三个图中还出现了迷宫格和彩噪，这些artifacts的出现取决于纹理类型和处理RAW图的方法。
 
@@ -46,9 +62,45 @@ Bayer阵列包含交替分布的红绿和绿蓝滤光片，这里需要注意的
 
 你可能疑惑本文中第一幅图的感光点为什么没有紧紧放置在彼此旁边，实际上相机传感器上的感光点并没有覆盖整个表面，为了容纳其他电子设备，可能仅仅占据总面积的一半。如下图所示，感光点之间会有“小尖峰”来将光子引导到其中一个感光点。数码相机在每个感光点上方都包含微透镜（microlens）以增强聚光能力，这些透镜类似于漏斗，将本可能会被浪费的光子引导到感光点。
 
-![microlens](/jpg/1.1_microlens.png)
+![img](https://cdn.cambridgeincolour.com/images/tutorials/lenses_aperture4.png)
 
 精心设计的微透镜可以增强每个感光点的光信号，进而可以在相同曝光时间内生成具有更少噪声的图像。相机厂商已经能够通过改善微透镜的设计来减少最高分辨率下的噪声，尽管同样面积的sensor被塞进越来越多越来越小的感光点。
+
+|  f/#   | Light-Gathering Area (Aperture Size) | Required Shutter Speed | Depth of Field |
+| :----: | :----------------------------------: | :--------------------: | :------------: |
+| Higher |               Smaller                |         Slower         |     Wider      |
+| Lower  |                Larger                |         Faster         |    Narrower    |
+
+
+
+![Canon camera lens boxes](https://cdn.cambridgeincolour.com/images/tutorials/lenses_boxes.jpg)
+
+
+
+![maximum aperture in 1:X format](https://cdn.cambridgeincolour.com/images/tutorials/lenses_maxaperture1.jpg)
+
+
+
+| Typical Maximum Apertures | Relative Light-Gathering Ability |                  Typical Lens Types                  |
+| :-----------------------: | :------------------------------: | :--------------------------------------------------: |
+|           f/1.0           |               32X                |  Fastest Available Prime Lenses (for Consumer Use)   |
+|           f/1.4           |               16X                |                  Fast Prime Lenses                   |
+|           f/2.0           |                8X                |                  Fast Prime Lenses                   |
+|           f/2.8           |                4X                |     Fastest Zoom Lenses (for Constant Aperture)      |
+|           f/4.0           |                2X                | Light Weight Zoom Lenses or Extreme Telephoto Primes |
+|           f/5.6           |                1X                | Light Weight Zoom Lenses or Extreme Telephoto Primes |
+
+
+
+![img](https://cdn.cambridgeincolour.com/images/tutorials/lenses_maxaperture2.jpg)
+
+
+
+
+
+
+
+
 
 ## reference
 [understanding camera lenses](https://www.cambridgeincolour.com/tutorials/camera-lenses.htm)  

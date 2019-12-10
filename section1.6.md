@@ -4,23 +4,47 @@
 
 数码相机使用数百万个微小光腔或“感光点”阵列来记录图像，当按下快门的瞬间开始曝光，每个感光点都会收集光子并转换成电信号。曝光一旦结束，相机就会关闭这些感光点，然后通过测量电信号的强度来评估进入的光子数量。这些信号会被量化成数字值，其精度由bit位深度来决定。最终出图精度可能会根据保存格式做进一步压缩，比如JPEG格式图像是8bit（0-255）精度.
 
+ →
+
+
+
 ![Cavity Array](/jpg/1.1_cavity_array.png)
 
 ## BACKGROUND: COLOR TEMPERATURE
 
 然而按照上面描述，我们只能得到灰度图，因为这些敢感光点不能区分各种颜色。为了捕获到彩色图像，需要在每个光腔上放置一个滤光片，只允许特定颜色的光通过。实际上现代数码相机的每个光腔只能接收三原色中的一种，剩下的2/3入射光都会被丢弃。为了让每个像素点有全部颜色，需要近似出其他两种三颜色，最常见的方法就是使用如下图所示的滤光片阵列，Bayer阵列。
 
-![bayer Array](/jpg/1.1_bayer_array.png)
+![img](https://cdn.cambridgeincolour.com/images/tutorials/wb_bbdiagram.png)
+![img](https://cdn.cambridgeincolour.com/images/tutorials/spectralsensitivity2.png)
+![img](https://cdn.cambridgeincolour.com/images/tutorials/spectralsensitivity3.png)
 
 Bayer阵列包含交替分布的红绿和绿蓝滤光片，这里需要注意的是绿色滤光片的数量是红色和蓝色滤光片的两倍。这是由于人眼对绿色比蓝色和红色更为敏感，所以三原色感光面积并不是等分的。相比于平等对待每种颜色，绿色像素的冗余设计可以使图片具有更少的噪声和更好的细节，这也可以解释为什么绿色通道的噪声远少于其他两种颜色。
 
-![origin & bayer](/jpg/1.1_bayer&origin.png)
+| **Color Temperature** | **Light Source**                       |
+| --------------------- | -------------------------------------- |
+| 1000-2000 K           | Candlelight                            |
+| 2500-3500 K           | Tungsten Bulb (household variety)      |
+| 3000-4000 K           | Sunrise/Sunset (clear sky)             |
+| 4000-5000 K           | Fluorescent Lamps                      |
+| 5000-5500 K           | Electronic Flash                       |
+| 5000-6500 K           | Daylight with Clear Sky (sun overhead) |
+| 6500-8000 K           | Moderately Overcast Sky                |
+| 9000-10000 K          | Shade or Heavily Overcast Sky          |
 
 ## IN PRACTICE: JPEG & TIFF FILES
 
 去马赛克（demosaicing）是将Bayer图转换成每个像素都包含三原色的图像的过程，如果相机不能直接测量全部色彩，那么这个过程是如何实现的呢？如果我们将每四个2x2的光腔阵列想象成一个单独的全颜色光腔，就可以解决这个问题。
 
-![demosaic](/jpg/1.1_demosaic.png)
+| ![img](https://cdn.cambridgeincolour.com/images/tutorials/wb_sym-awb.png) | Auto White Balance |
+| ------------------------------------------------------------ | ------------------ |
+| ![img](https://cdn.cambridgeincolour.com/images/tutorials/wb_sym-custom.png) | Custom             |
+| ![img](https://cdn.cambridgeincolour.com/images/tutorials/wb_sym-kelvin.png) | Kelvin             |
+| ![img](https://cdn.cambridgeincolour.com/images/tutorials/wb_sym-tungsten.png) | Tungsten           |
+| ![img](https://cdn.cambridgeincolour.com/images/tutorials/wb_sym-fluor.png) | Fluorescent        |
+| ![img](https://cdn.cambridgeincolour.com/images/tutorials/wb_sym-daylt.png) | Daylight           |
+| ![img](https://cdn.cambridgeincolour.com/images/tutorials/wb_sym-flash.png) | Flash              |
+| ![img](https://cdn.cambridgeincolour.com/images/tutorials/wb_sym-cloudy.png) | Cloudy             |
+| ![img](https://cdn.cambridgeincolour.com/images/tutorials/wb_sym-shade.png) | Shade              |
 
 虽然这个方法可以达到目的，但大多数相机都会采取额外的操作来从这个颜色阵列中获取更多的信息。如果只在每个2x2阵列的原本位置利用这些颜色信息，那么我们只能得到水平/垂直上一半分辨率的图像。如果利用多个相互重叠的2x2阵列来进行插值计算，就能实现更高的分辨率，如下图所示。
 
@@ -42,9 +66,23 @@ Bayer阵列包含交替分布的红绿和绿蓝滤光片，这里需要注意的
 
 你可能疑惑本文中第一幅图的感光点为什么没有紧紧放置在彼此旁边，实际上相机传感器上的感光点并没有覆盖整个表面，为了容纳其他电子设备，可能仅仅占据总面积的一半。如下图所示，感光点之间会有“小尖峰”来将光子引导到其中一个感光点。数码相机在每个感光点上方都包含微透镜（microlens）以增强聚光能力，这些透镜类似于漏斗，将本可能会被浪费的光子引导到感光点。
 
-![microlens](/jpg/1.1_microlens.png)
+![img](https://cdn.cambridgeincolour.com/images/tutorials/wb_click.jpg)
 
 精心设计的微透镜可以增强每个感光点的光信号，进而可以在相同曝光时间内生成具有更少噪声的图像。相机厂商已经能够通过改善微透镜的设计来减少最高分辨率下的噪声，尽管同样面积的sensor被塞进越来越多越来越小的感光点。
+
+
+
+![img](https://cdn.cambridgeincolour.com/images/tutorials/wb_graycard.jpg)
+
+
+
+
+
+<div align="center">
+<img src="https://cdn.cambridgeincolour.com/images/tutorials/noise_20DISO100-crop.jpg" height="300px" alt="Low Noise(Smooth Colorless Gray)" ><img src="https://cdn.cambridgeincolour.com/images/tutorials/noise_epsonISO400-crop.jpg" height="300px" alt="High Noise(Patches of Color)" >
+</div>
+
+
 
 ## NOTES ON AUTO WHITE BALANCE
 
