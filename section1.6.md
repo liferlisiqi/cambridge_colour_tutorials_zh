@@ -2,23 +2,23 @@
 
 [原文连接](https://www.cambridgeincolour.com/tutorials/white-balance.htm)  
 
-数码相机使用数百万个微小光腔或“感光点”阵列来记录图像，当按下快门的瞬间开始曝光，每个感光点都会收集光子并转换成电信号。曝光一旦结束，相机就会关闭这些感光点，然后通过测量电信号的强度来评估进入的光子数量。这些信号会被量化成数字值，其精度由bit位深度来决定。最终出图精度可能会根据保存格式做进一步压缩，比如JPEG格式图像是8bit（0-255）精度.
+白平衡（WB）是消除不真实偏色的过程，为了使在人眼呈现白色的对象在照片中也呈现白色。 正确的相机白平衡必须考虑到光源的“色温”，这是指白光的相对较暖或较冷。 我们的眼睛非常擅长判断不同光源下的白色，但是数码相机通常在自动白平衡（AWB）方面遇到很大的困难，并会产生难看的蓝色，橙色甚至绿色的偏色。 了解数字白平衡可以有助于避免这些偏色，从而在更广泛的照明条件下改善照片。
 
- →
-
-
-
-![Cavity Array](/jpg/1.1_cavity_array.png)
+<div align="center">
+<img src="https://cdn.cambridgeincolour.com/images/tutorials/wb_sardmen-incorrect.jpg" height="300px" alt="Low Noise(Smooth Colorless Gray)"><img src="https://cdn.cambridgeincolour.com/images/tutorials/wb_sardmen-correct.jpg" height="300px" alt="High Noise(Patches of Color)">
+</div>
 
 ## BACKGROUND: COLOR TEMPERATURE
 
-然而按照上面描述，我们只能得到灰度图，因为这些敢感光点不能区分各种颜色。为了捕获到彩色图像，需要在每个光腔上放置一个滤光片，只允许特定颜色的光通过。实际上现代数码相机的每个光腔只能接收三原色中的一种，剩下的2/3入射光都会被丢弃。为了让每个像素点有全部颜色，需要近似出其他两种三颜色，最常见的方法就是使用如下图所示的滤光片阵列，Bayer阵列。
+色温描述了“黑体”表面色温的光谱， 黑体是吸收所有入射光的对象，既不反射也不允许其通过。 在我们的日常经验中，大致可以理解黑体辐射是在加热金属或石头时：当它们达到一个温度时，它们会变成“红热”，然后在更高的温度下会“白热”。 类似地，处于不同色温的黑体也具有变化的“白光”色温。 尽管叫做“白光”，但其包含成分并不一定分布在可见光谱中：
 
 ![img](https://cdn.cambridgeincolour.com/images/tutorials/wb_bbdiagram.png)
 ![img](https://cdn.cambridgeincolour.com/images/tutorials/spectralsensitivity2.png)
 ![img](https://cdn.cambridgeincolour.com/images/tutorials/spectralsensitivity3.png)
 
-Bayer阵列包含交替分布的红绿和绿蓝滤光片，这里需要注意的是绿色滤光片的数量是红色和蓝色滤光片的两倍。这是由于人眼对绿色比蓝色和红色更为敏感，所以三原色感光面积并不是等分的。相比于平等对待每种颜色，绿色像素的冗余设计可以使图片具有更少的噪声和更好的细节，这也可以解释为什么绿色通道的噪声远少于其他两种颜色。
+可以看到 5000K 产生大致中性的光，而 3000K 和 9000K 分别移动以包含更多橙色和蓝色波长的光谱。 随着色温升高，颜色分布变冷。 这看似不直观，是由于较短的波长包含较高的能量。
+
+既然摄影师不会与黑体打交道，为什么色温进行光线描述呢？ 是因为，日光和钨丝灯之类的光源紧密模仿了黑体产生的光源分布，尽管诸如荧光灯和大多数商业照明之类的其他光源远远偏离了黑体。 由于摄影师从未使用术语“色温”来指代真正的黑体光源，因此该术语隐含为与黑体颜色相似的对应色温。 下表是一些常见光源的相关色温的经验法则指南：
 
 | **Color Temperature** | **Light Source**                       |
 | --------------------- | -------------------------------------- |
