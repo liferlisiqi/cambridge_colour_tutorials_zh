@@ -39,9 +39,11 @@
 
 摄影对象可能会对相机的自动对焦效果产生巨大影响，而且其影响通常甚至超过相机型号，镜头或对焦设置之间的任何变化。 影响自动对焦的三个最重要的因素是：光线水平，拍摄对象对比度以及相机或拍摄对象的运动。
 
-![img](https://cdn.cambridgeincolour.com/images/tutorials/af_pointquality-top2.png)
+![img](https://raw.githubusercontent.com/liferlisiqi/cambridge_colour_tutorials_zh/master/jpg/1.7_autofocus_factors.PNG)
 
+上面的例子说明了不同焦点的质量，请注意每个因素都不是独立的。 换句话说，即使相似的对象也具有极高的对比度，即使是昏暗的物体，也可以实现自动对焦。 这对选择自动对焦点有重要意义：假设所有其他因素保持相等，选择边缘锐利或纹理明显的对焦点可以实现更好的自动聚焦。
 
+在左侧的示例中，幸运的是对焦效果最佳的位置也是拍摄对象的位置。 下一个示例更具问题，因为自动对焦在背景而非主体上表现最佳。 
 
 ![demosaic](/jpg/1.1_demosaic.png)
 
