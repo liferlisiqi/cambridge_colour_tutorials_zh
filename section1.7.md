@@ -2,25 +2,52 @@
 
 [原文连接](https://www.cambridgeincolour.com/tutorials/camera-autofocus.htm)  
 
-数码相机使用数百万个微小光腔或“感光点”阵列来记录图像，当按下快门的瞬间开始曝光，每个感光点都会收集光子并转换成电信号。曝光一旦结束，相机就会关闭这些感光点，然后通过测量电信号的强度来评估进入的光子数量。这些信号会被量化成数字值，其精度由bit位深度来决定。最终出图精度可能会根据保存格式做进一步压缩，比如JPEG格式图像是8bit（0-255）精度.
+相机的自动对焦系统会智能地调节相机镜头，以对被摄物体聚焦，这可能意味着清晰照片和错失机会之间的差异。 尽管目标似乎很简单（在焦点处很锐利），但是相机对焦的内部工作原理并不是那么简单。 本教程旨在通过介绍自动对焦的工作原理来改善您的照片，从而使您能够充分利用其自动对焦功能并避免其缺点。
 
-![Cavity Array](/jpg/1.1_cavity_array.png)
+注意：自动对焦（AF）可以通过使用相机内的对比度传感器（被动AF）或通过发出信号来照亮或估计与被摄对象的距离（主动AF）来工作。 可以使用对比度检测或相位检测方法执行被动自动对焦，但是两者都依靠对比度来实现精确的自动对焦。 因此，就教程认为它们的成像质量是相似的。 除非另有说明，否则本教程将假定为被动自动对焦。 我们还将在最后讨论主动自动对焦的AF辅助光束方法。
 
 ## CONCEPT: AUTOFOCUS SENSORS
 
-然而按照上面描述，我们只能得到灰度图，因为这些敢感光点不能区分各种颜色。为了捕获到彩色图像，需要在每个光腔上放置一个滤光片，只允许特定颜色的光通过。实际上现代数码相机的每个光腔只能接收三原色中的一种，剩下的2/3入射光都会被丢弃。为了让每个像素点有全部颜色，需要近似出其他两种三颜色，最常见的方法就是使用如下图所示的滤光片阵列，Bayer阵列。
+相机的自动对焦传感器是实现精确对焦的真正引擎，并且根据图像视场以各种阵列形式存在。 每个传感器通过评估图像在其相应点的对比度变化来测量相应的焦点，假定最大对比度对应于最大清晰度。
 
-![bayer Array](/jpg/1.1_bayer_array.png)
+![img](https://cdn.cambridgeincolour.com/images/tutorials/af_swan1b.jpg)
 
-Bayer阵列包含交替分布的红绿和绿蓝滤光片，这里需要注意的是绿色滤光片的数量是红色和蓝色滤光片的两倍。这是由于人眼对绿色比蓝色和红色更为敏感，所以三原色感光面积并不是等分的。相比于平等对待每种颜色，绿色像素的冗余设计可以使图片具有更少的噪声和更好的细节，这也可以解释为什么绿色通道的噪声远少于其他两种颜色。
 
-![origin & bayer](/jpg/1.1_bayer&origin.png)
+
+| ![img](https://cdn.cambridgeincolour.com/images/tutorials/af_swanzm3.png) 400% | ![img](https://cdn.cambridgeincolour.com/images/tutorials/af_swanzm3hist.png) ![img](https://cdn.cambridgeincolour.com/images/tutorials/af_histgrad128.jpg) Sensor Histogram |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ![img](https://cdn.cambridgeincolour.com/images/tutorials/af_swanzm2.png) 400% | ![img](https://cdn.cambridgeincolour.com/images/tutorials/af_swanzm2hist.png) ![img](https://cdn.cambridgeincolour.com/images/tutorials/af_histgrad128.jpg) Sensor Histogram |
+| ![img](https://cdn.cambridgeincolour.com/images/tutorials/af_swanzm1.png) 400% | ![img](https://cdn.cambridgeincolour.com/images/tutorials/af_swanzm1hist.png) ![img](https://cdn.cambridgeincolour.com/images/tutorials/af_histgrad128.jpg) Sensor Histogram |
+
+自动对焦的过程通常如下：
+**（1）**自动对焦处理器（AFP）轻微改动对焦距离
+**（2）**AFP读取AF传感器，以评估是否完成对焦以及对焦程度。
+**（3）**使用（2）中的信息，AFP重新设置镜头的对焦距离。
+**（4）**重复步骤2-3，直到获得令人满意的对焦为止。
+
+整个过程通常在一秒钟之内完成。 对于困难的对象，相机可能无法获得令人满意的对焦，并且会放弃重复上述步骤，从而导致自动对焦失败。 这是可怕的“拉风箱”场景，在这种情况下，相机反复来回聚焦，而没有实现对焦锁定。 但是这并不意味着无法针对所选对象进行对焦， 自动对焦是否会失败以及为什么会失败的主要决定因素在下一节进行介绍。
+
+<div align="center">
+<img src="https://cdn.cambridgeincolour.com/images/tutorials/wb_mixed-ex2.jpg" height="500px" alt="Low Noise(Smooth Colorless Gray)" ><img src="https://cdn.cambridgeincolour.com/images/tutorials/wb_mixed-ex.jpg" height="500px" alt="High Noise(Patches of Color)" >
+</div>
+
+
+
+
 
 ## FACTORS AFFECTING AUTOFOCUS PERFORMANCE
 
-去马赛克（demosaicing）是将Bayer图转换成每个像素都包含三原色的图像的过程，如果相机不能直接测量全部色彩，那么这个过程是如何实现的呢？如果我们将每四个2x2的光腔阵列想象成一个单独的全颜色光腔，就可以解决这个问题。
+摄影对象可能会对相机的自动对焦效果产生巨大影响，而且其影响通常甚至超过相机型号，镜头或对焦设置之间的任何变化。 影响自动对焦的三个最重要的因素是：光线水平，拍摄对象对比度以及相机或拍摄对象的运动。
+
+![img](https://cdn.cambridgeincolour.com/images/tutorials/af_pointquality-top2.png)
+
+
 
 ![demosaic](/jpg/1.1_demosaic.png)
+
+
+
+
 
 虽然这个方法可以达到目的，但大多数相机都会采取额外的操作来从这个颜色阵列中获取更多的信息。如果只在每个2x2阵列的原本位置利用这些颜色信息，那么我们只能得到水平/垂直上一半分辨率的图像。如果利用多个相互重叠的2x2阵列来进行插值计算，就能实现更高的分辨率，如下图所示。
 
@@ -60,3 +87,5 @@ Bayer阵列包含交替分布的红绿和绿蓝滤光片，这里需要注意的
 
 ## reference
 [understanding camera autofocus](https://www.cambridgeincolour.com/tutorials/camera-autofocus.htm)  
+
+[tutorial on image histograms](https://www.cambridgeincolour.com/tutorials/histograms1.htm)
