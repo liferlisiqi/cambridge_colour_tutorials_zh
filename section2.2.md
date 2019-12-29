@@ -26,39 +26,29 @@
 
 清晰的照片要有很高的锐度和分辨率，通过下面的例子来对两个因素有个直观的了解：
 
-
-
-
-
 ![Sharpness Example: Acutance and Resolution](https://cdn.cambridgeincolour.com/images/tutorials/sharpness_ex1.jpg)
+
+从上至下依次为：高锐利度、低分辨率；低锐利度、高分辨率；高锐利度、高分辨率。
 
 <div align="center">
 <img src="https://cdn.cambridgeincolour.com/images/tutorials/sharpness_acutanceex.jpg" height="300px" alt="high resolution" ><img src="https://cdn.cambridgeincolour.com/images/tutorials/sharpness_resolutionex.jpg" height="300px" alt="low resolution" ><img src="https://cdn.cambridgeincolour.com/images/tutorials/sharpness_bothex.jpg" height="300px" alt="low resolution" >
 </div>
 
-虽然这个方法可以达到目的，但大多数相机都会采取额外的操作来从这个颜色阵列中获取更多的信息。如果只在每个2x2阵列的原本位置利用这些颜色信息，那么我们只能得到水平/垂直上一半分辨率的图像。如果利用多个相互重叠的2x2阵列来进行插值计算，就能实现更高的分辨率，如下图所示。
 
-![demosaic2](/jpg/1.1_demosaic2.png)
 
-去马赛克的算法有很多，在这里介绍的算法在计算过程中不会考虑使用图像边缘的信息。如果我们假设图像在每个方向上是连续的，那么边缘附近的计算就不准确。而对于数百万像素的相机，这些边缘附近的像素经常会被剪切掉，所以损失通常可以忽略不记。
+## PROPERTIES OF SHARPNESS
 
-## Demosaicing artifacts
+除了分辨率和锐利度，还有其他因素会影响我们对清晰度的感知。 图像噪点（或胶片颗粒）通常不利于图像，但是少量噪点实际上可以增加清晰度。 以下示例：
 
-当图像中具有接近分辨率极限的小尺寸细节纹理时，传感器有时会骗过去马赛克算法，产生不符实际的结果，也叫做artifact。最常见的一种摩尔纹，表现形式为重复图案、颜色失真或者迷宫格。
+<div align="center">
+<img src="https://cdn.cambridgeincolour.com/images/tutorials/sharpness_nonoise.jpg" height="500px" alt="high resolution" ><img src="https://cdn.cambridgeincolour.com/images/tutorials/sharpness_noise.jpg" height="500px" alt="low resolution" >
+</div>
 
-![demosaic_artifact](/jpg/1.1_demosaic_artifact.png)
+尽管两个图像都没有被锐化，但是左侧的图像显得更柔和，细节也更少。适当的图像噪点可以非常细微，并使得具有很高的清晰度，诱使眼睛认为存在清晰的细节。
 
-上面展示了两个不同放大倍数的照片，可以看到下面四个图都出现了摩尔纹，而且在第三个图中还出现了迷宫格和彩噪，这些artifacts的出现取决于纹理类型和处理RAW图的方法。
+清晰度也取决于观看距离。 目的为从远处观看的图像，例如海报或广告牌，其分辨率可能比画廊中的精美印刷品低得多，但由于观看距离，两者可能都被认为是清晰的。 锐化图像时请记住此属性，因为最佳的锐化类型不一定是屏幕上看起来最好的。
 
-然而即使是理论上完美的传感器，可以捕获并区分感光点的所有颜色，摩尔纹和其他artifacts仍然会出现，这是所有以离散间隔或位置对连续信号进行采样的系统不可避免的后果。所以几乎所有数字传感器都包含称为光学低通滤波器（OLPF）或扛混叠滤波器（AA）的东西，通常是放在传感器上面的薄层，它通过对超过传感器分辨率的问题细节进行有效模糊来缓解artifacts。
-
-## Microlens arrays
-
-你可能疑惑本文中第一幅图的感光点为什么没有紧紧放置在彼此旁边，实际上相机传感器上的感光点并没有覆盖整个表面，为了容纳其他电子设备，可能仅仅占据总面积的一半。如下图所示，感光点之间会有“小尖峰”来将光子引导到其中一个感光点。数码相机在每个感光点上方都包含微透镜（microlens）以增强聚光能力，这些透镜类似于漏斗，将本可能会被浪费的光子引导到感光点。
-
-![microlens](/jpg/1.1_microlens.png)
-
-精心设计的微透镜可以增强每个感光点的光信号，进而可以在相同曝光时间内生成具有更少噪声的图像。相机厂商已经能够通过改善微透镜的设计来减少最高分辨率下的噪声，尽管同样面积的sensor被塞进越来越多越来越小的感光点。
+清晰度也会受到拍照技术的明显影响。 即使少量的相机抖动也会大大降低图像的清晰度。 适当的快门速度，坚固的相机三脚架和反光镜固定装置也会显着影响成像的清晰度。
 
 ## reference
 [digital camera sensors](https://www.cambridgeincolour.com/tutorials/camera-sensors.htm)  
